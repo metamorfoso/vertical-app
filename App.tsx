@@ -5,11 +5,10 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import {
+  Alert,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -17,43 +16,50 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import Geolocation, { GeolocationResponse } from '@react-native-community/geolocation';
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+Geolocation.setRNConfiguration({
+  skipPermissionRequests: false,
+  authorizationLevel: 'always',
+  enableBackgroundLocationUpdates: true,
+})
+
+const CurrentLocation = () => {
+  const watchIdRef = useRef<number>()
+  const [location, setLocation] = useState<GeolocationResponse>();
+
+  useLayoutEffect(() => {
+    const watchId = Geolocation.watchPosition(
+      position => {
+        setLocation(position)
+      },
+      error => {
+        Alert.alert('Geolocation failed', error.message);
+      },
+      {
+        enableHighAccuracy: true, // true forces GPS (false allows WIFI)
+        distanceFilter: 25,
+        // useSignificantChanges: true, // needs experimentation -- possibly omits too many datapoints
+      }
+    );
+
+    watchIdRef.current = watchId
+
+    return () => {
+      if (watchIdRef.current) {
+        Geolocation.clearWatch(watchIdRef.current)
+      }
+    }
+  }, []);
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View>
+      <Text>Location: {JSON.stringify(location)}</Text>
     </View>
   );
-}
+};
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -68,9 +74,7 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View>
-        <Text>Location: </Text>
-      </View>
+      <CurrentLocation />
     </SafeAreaView>
   );
 }
