@@ -26,14 +26,14 @@ Geolocation.setRNConfiguration({
   enableBackgroundLocationUpdates: true,
 })
 
-const CurrentLocation = () => {
+const useWatchPosition = () => {
   const watchIdRef = useRef<number>()
-  const [location, setLocation] = useState<GeolocationResponse>();
+  const [position, setPosition] = useState<GeolocationResponse>();
 
   useLayoutEffect(() => {
     const watchId = Geolocation.watchPosition(
       position => {
-        setLocation(position)
+        setPosition(position)
       },
       error => {
         Alert.alert('Geolocation failed', error.message);
@@ -54,9 +54,15 @@ const CurrentLocation = () => {
     }
   }, []);
 
+  return position
+}
+
+const CurrentLocation = () => {
+  const position = useWatchPosition()
+
   return (
     <View>
-      <Text>Location: {JSON.stringify(location)}</Text>
+      <Text>Location: {JSON.stringify(position)}</Text>
     </View>
   );
 };
