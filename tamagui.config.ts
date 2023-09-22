@@ -7,14 +7,13 @@ const tokens = createTokens({
   space,
   zIndex,
   color,
-  radius,
+  radius
 })
-
 
 const tamaguiConfig = createTamagui({
   ...config,
   tokens,
-  themes,
+  themes
 })
 // this makes typescript properly type everything based on the config
 
