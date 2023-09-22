@@ -11,14 +11,19 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
+  // Text,
   useColorScheme,
-  View,
+  // View,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
+import { YStack, Theme, TamaguiProvider } from 'tamagui';
+
 import Geolocation, { GeolocationResponse } from '@react-native-community/geolocation';
+
+import tamaguiConfig from './tamagui.config'
+import Altitude from './components/Altitude';
 
 Geolocation.setRNConfiguration({
   skipPermissionRequests: false,
@@ -33,6 +38,7 @@ const useWatchPosition = () => {
   useLayoutEffect(() => {
     const watchId = Geolocation.watchPosition(
       position => {
+        console.log(position)
         setPosition(position)
       },
       error => {
@@ -60,11 +66,7 @@ const useWatchPosition = () => {
 const CurrentLocation = () => {
   const position = useWatchPosition()
 
-  return (
-    <View>
-      <Text>Location: {JSON.stringify(position)}</Text>
-    </View>
-  );
+  return <>{position && <Altitude position={position} />}</>;
 };
 
 function App(): JSX.Element {
@@ -75,13 +77,23 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <CurrentLocation />
-    </SafeAreaView>
+    <TamaguiProvider config={tamaguiConfig}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <Theme name="light">
+          <YStack
+            style={{height: '100%', width: '100%'}}
+            alignItems='center'
+            justifyContent='center'
+            backgroundColor='$color.pink4Light' >
+            <CurrentLocation />
+          </YStack>
+        </Theme>
+      </SafeAreaView>
+    </TamaguiProvider>
   );
 }
 
