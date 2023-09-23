@@ -5,6 +5,9 @@ import position from '../components/WatchPosition/positionSlice'
 export const store = configureStore({
   reducer: {
     position
+  },
+  devTools: {
+
   }
 })
 

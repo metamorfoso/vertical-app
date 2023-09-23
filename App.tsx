@@ -1,4 +1,5 @@
 import React from 'react'
+import 'react-native-devsettings/withAsyncStorage'
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native'
 import { Provider } from 'react-redux'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
