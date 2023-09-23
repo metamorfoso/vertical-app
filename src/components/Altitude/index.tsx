@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'tamagui'
 
 import { useAppSelector } from '../../redux/hooks'
-import { selectLatestPosition } from '../WatchPosition/positionSlice'
+import { selectLatestPosition } from '../RecordPosition/positionSlice'
 
 const Altitude: React.FC = () => {
   const position = useAppSelector(selectLatestPosition)

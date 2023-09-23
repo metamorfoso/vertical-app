@@ -6,7 +6,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { YStack, Theme, TamaguiProvider } from 'tamagui'
 
 import tamaguiConfig from './tamagui.config'
-import WatchPosition from './src/components/WatchPosition'
+import RecordPosition from './src/components/RecordPosition'
 import { store as reduxStore } from './src/redux/store'
 import Altitude from './src/components/Altitude'
 
@@ -20,7 +20,6 @@ function App (): JSX.Element {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <Provider store={reduxStore}>
-        <WatchPosition />
         <SafeAreaView style={backgroundStyle}>
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -31,9 +30,11 @@ function App (): JSX.Element {
               style={{ height: '100%', width: '100%' }}
               alignItems='center'
               justifyContent='center'
+              gap='$5'
               backgroundColor='$color.pink4Light'
             >
               <Altitude />
+              <RecordPosition />
             </YStack>
           </Theme>
         </SafeAreaView>

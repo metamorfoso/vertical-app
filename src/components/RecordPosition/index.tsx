@@ -1,6 +1,7 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
 import { Alert } from 'react-native'
+import { Button, YStack } from 'tamagui'
 
 import { useAppDispatch } from '../../redux/hooks'
 
@@ -12,7 +13,8 @@ Geolocation.setRNConfiguration({
   enableBackgroundLocationUpdates: true
 })
 
-const useInitWatchPosition = (): void => {
+const useRecordPosition = (): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
+  const [isRecording, setIsRecording] = useState(false)
   const watchIdRef = useRef<number>()
   const dispatch = useAppDispatch()
 
@@ -20,7 +22,10 @@ const useInitWatchPosition = (): void => {
     const watchId = Geolocation.watchPosition(
       position => {
         console.log(position)
-        dispatch(add(position))
+
+        if (isRecording) {
+          dispatch(add(position))
+        }
       },
       error => {
         Alert.alert('Geolocation failed', error.message)
@@ -39,14 +44,23 @@ const useInitWatchPosition = (): void => {
         Geolocation.clearWatch(watchIdRef.current)
       }
     }
-  }, [])
+  }, [isRecording])
+
+  return [isRecording, setIsRecording]
 }
 
-const WatchPosition: React.FC = () => {
-  useInitWatchPosition()
+const RecordPosition: React.FC = () => {
+  const [isRecording, setIsRecording] = useRecordPosition()
 
-  return <></>
-  // return <>{position && <Altitude position={position} />}</>;
+  const toggleRecording = (): void => setIsRecording(!isRecording)
+
+  const buttonText = isRecording ? 'Stop' : 'Start'
+
+  return (
+    <YStack>
+      <Button onPress={toggleRecording}>{buttonText}</Button>
+    </YStack>
+  )
 }
 
-export default WatchPosition
+export default RecordPosition

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import position from '../components/WatchPosition/positionSlice'
+import position from '../components/RecordPosition/positionSlice'
 
 export const store = configureStore({
   reducer: {
