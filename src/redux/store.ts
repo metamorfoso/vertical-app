@@ -33,7 +33,7 @@ export const store = configureStore({
       }
     })
   },
-  devTools: true
+  devTools: true // TODO: change before shipping
 })
 
 export const persistor = persistStore(store)
