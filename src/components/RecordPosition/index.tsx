@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
-import { Alert } from 'react-native'
 import { Button, YStack } from 'tamagui'
 
 import { useAppDispatch } from '../../redux/hooks'
@@ -15,11 +14,10 @@ Geolocation.setRNConfiguration({
 
 const useRecordPosition = (): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [isRecording, setIsRecording] = useState(false)
-  const watchIdRef = useRef<number>()
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    const watchId = Geolocation.watchPosition(
+    Geolocation.watchPosition(
       position => {
         console.log(position)
 
@@ -28,7 +26,7 @@ const useRecordPosition = (): [boolean, React.Dispatch<React.SetStateAction<bool
         }
       },
       error => {
-        Alert.alert('Geolocation failed', error.message)
+        console.warn(error.message)
       },
       {
         enableHighAccuracy: true, // true forces GPS (false allows WIFI)
@@ -36,14 +34,6 @@ const useRecordPosition = (): [boolean, React.Dispatch<React.SetStateAction<bool
         // useSignificantChanges: true, // needs experimentation -- possibly omits too many datapoints
       }
     )
-
-    watchIdRef.current = watchId
-
-    return () => {
-      if (typeof watchIdRef.current === 'number') {
-        Geolocation.clearWatch(watchIdRef.current)
-      }
-    }
   }, [isRecording])
 
   return [isRecording, setIsRecording]
