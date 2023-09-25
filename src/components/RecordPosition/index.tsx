@@ -1,48 +1,21 @@
-import React, { useLayoutEffect, useState } from 'react'
-import Geolocation from '@react-native-community/geolocation'
+import React from 'react'
 import { Button, YStack } from 'tamagui'
 
-import { useAppDispatch } from '../../redux/hooks'
-
-import { add } from './positionSlice'
-
-Geolocation.setRNConfiguration({
-  skipPermissionRequests: false,
-  authorizationLevel: 'always',
-  enableBackgroundLocationUpdates: true
-})
-
-const useRecordPosition = (): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
-  const [isRecording, setIsRecording] = useState(false)
-  const dispatch = useAppDispatch()
-
-  useLayoutEffect(() => {
-    Geolocation.watchPosition(
-      position => {
-        console.log(position)
-
-        if (isRecording) {
-          dispatch(add(position))
-        }
-      },
-      error => {
-        console.warn(error.message)
-      },
-      {
-        enableHighAccuracy: true, // true forces GPS (false allows WIFI)
-        distanceFilter: 25
-        // useSignificantChanges: true, // needs experimentation -- possibly omits too many datapoints
-      }
-    )
-  }, [isRecording])
-
-  return [isRecording, setIsRecording]
-}
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { recordingStarted, recordingStopped, selectIsRecording } from '../../redux/positionSlice'
 
 const RecordPosition: React.FC = () => {
-  const [isRecording, setIsRecording] = useRecordPosition()
+  const dispatch = useAppDispatch()
 
-  const toggleRecording = (): void => setIsRecording(!isRecording)
+  const isRecording = useAppSelector(selectIsRecording)
+
+  const toggleRecording = (): void => {
+    if (isRecording) {
+      dispatch(recordingStopped())
+    } else {
+      dispatch(recordingStarted())
+    }
+  }
 
   const buttonText = isRecording ? 'Stop' : 'Start'
 

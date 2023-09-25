@@ -10,18 +10,24 @@ import {
   REGISTER
 } from 'redux-persist'
 
-import position from '../components/RecordPosition/positionSlice'
+import position from './positionSlice'
+import { listenerMiddleware } from './listenerMiddleware'
 
-const persistConfig = {
+const persistConfigGlobal = {
   key: 'root',
-  storage: AsyncStorage
+  storage: AsyncStorage,
+  blacklist: ['position']
 }
 
 const combinedReducers = combineReducers({
-  position
+  position: persistReducer({
+    key: 'position',
+    storage: AsyncStorage,
+    whitelist: ['positions', 'history']
+  }, position)
 })
 
-const reducer = persistReducer(persistConfig, combinedReducers)
+const reducer = persistReducer(persistConfigGlobal, combinedReducers)
 
 export const store = configureStore({
   reducer,
@@ -31,7 +37,7 @@ export const store = configureStore({
         // redux-persist seems to write objects that aren't strictly serializable to the store
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
-    })
+    }).prepend(listenerMiddleware.middleware)
   },
   devTools: true // TODO: change before shipping
 })

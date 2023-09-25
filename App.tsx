@@ -17,7 +17,7 @@ function App (): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
   }
-
+  global.persistor = persistor // TODO: only do this in dev (allows purging storage from debugger console)
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <Provider store={reduxStore}>
