@@ -9,7 +9,8 @@ interface Vertical {
   descent: number
 }
 
-const calculateVertical = (positionsList: PositionsList): Vertical => {
+const calculateVertical = (positionsDict: PositionsDict): Vertical => {
+  const positionsList = reduceToArraySortedByTimestamp(positionsDict)
   return positionsList.reduce((acc, currentPos, index, list) => {
     const prevIndex = index - 1
     const prevPos = list[prevIndex]

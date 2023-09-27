@@ -15,8 +15,8 @@ describe('reduceToArraySortedByTimestamp', () => {
 
 describe('calculate vertical', () => {
   // descent from 1000m to 900m, then ascent from 900m to 905m
-  const arg = [
-    {
+  const arg = {
+    1695626928614.9092: {
       mocked: true,
       coords: {
         speed: 3.74,
@@ -29,7 +29,7 @@ describe('calculate vertical', () => {
       },
       timestamp: 1695626928614.9092
     },
-    {
+    11695626932614.9092: {
       mocked: true,
       coords: {
         speed: 3.74,
@@ -42,7 +42,7 @@ describe('calculate vertical', () => {
       },
       timestamp: 11695626932614.9092
     },
-    {
+    161695627019656.838: {
       mocked: true,
       coords: {
         speed: 3.36,
@@ -55,7 +55,7 @@ describe('calculate vertical', () => {
       },
       timestamp: 161695627019656.838
     },
-    {
+    1691695627026647.466: {
       mocked: true,
       coords: {
         speed: 4.2,
@@ -67,7 +67,8 @@ describe('calculate vertical', () => {
         altitudeAccuracy: -1
       },
       timestamp: 1691695627026647.466
-    }, {
+    },
+    16951695627032633.56: {
       mocked: true,
       coords: {
         speed: 4.13,
@@ -79,7 +80,8 @@ describe('calculate vertical', () => {
         altitudeAccuracy: -1
       },
       timestamp: 16951695627032633.56
-    }, {
+    },
+    169561695627038649.8389: {
       mocked: true,
       coords: {
         speed: 4.12,
@@ -92,7 +94,7 @@ describe('calculate vertical', () => {
       },
       timestamp: 169561695627038649.8389
     }
-  ]
+  }
 
   it('calculates total ascent and total descent', () => {
     const result = calculateVertical(arg)
