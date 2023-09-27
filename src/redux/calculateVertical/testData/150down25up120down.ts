@@ -7,7 +7,7 @@ export default {
       latitude: 37.33181512,
       accuracy: 10,
       heading: 263.65,
-      altitude: 0,
+      altitude: 1000,
       altitudeAccuracy: -1
     },
     timestamp: 1695626928614.9092
@@ -20,7 +20,7 @@ export default {
       latitude: 37.33181512,
       accuracy: 10,
       heading: 263.65,
-      altitude: 0,
+      altitude: 990,
       altitudeAccuracy: -1
     },
     timestamp: 1695626932614.9092
@@ -33,7 +33,7 @@ export default {
       latitude: 37.33033364,
       accuracy: 10,
       heading: 109.06,
-      altitude: 0,
+      altitude: 980,
       altitudeAccuracy: -1
     },
     timestamp: 1695627019656.838
@@ -46,7 +46,7 @@ export default {
       latitude: 37.33027655,
       accuracy: 10,
       heading: 91.58,
-      altitude: 0,
+      altitude: 970,
       altitudeAccuracy: -1
     },
     timestamp: 1695627026647.466
@@ -59,7 +59,7 @@ export default {
       latitude: 37.33025622,
       accuracy: 10,
       heading: 92.98,
-      altitude: 0,
+      altitude: 960,
       altitudeAccuracy: -1
     },
     timestamp: 1695627032633.56
@@ -72,7 +72,7 @@ export default {
       latitude: 37.33024947,
       accuracy: 10,
       heading: 89.41,
-      altitude: 0,
+      altitude: 950,
       altitudeAccuracy: -1
     },
     timestamp: 1695627038649.8389
@@ -85,7 +85,7 @@ export default {
       latitude: 37.33023302,
       accuracy: 10,
       heading: 94.59,
-      altitude: 0,
+      altitude: 940,
       altitudeAccuracy: -1
     },
     timestamp: 1695627044645.304
@@ -98,7 +98,7 @@ export default {
       latitude: 37.33021775,
       accuracy: 10,
       heading: 89.65,
-      altitude: 0,
+      altitude: 930,
       altitudeAccuracy: -1
     },
     timestamp: 1695627050654.561
@@ -111,7 +111,7 @@ export default {
       latitude: 37.33020595,
       accuracy: 10,
       heading: 89.04,
-      altitude: 0,
+      altitude: 920,
       altitudeAccuracy: -1
     },
     timestamp: 1695627057658.249
@@ -124,7 +124,7 @@ export default {
       latitude: 37.33019556,
       accuracy: 10,
       heading: 91.5,
-      altitude: 0,
+      altitude: 910,
       altitudeAccuracy: -1
     },
     timestamp: 1695627064627.156
@@ -137,7 +137,7 @@ export default {
       latitude: 37.33019225,
       accuracy: 10,
       heading: 92.69,
-      altitude: 0,
+      altitude: 900,
       altitudeAccuracy: -1
     },
     timestamp: 1695627071601.27
@@ -150,7 +150,7 @@ export default {
       latitude: 37.33019539,
       accuracy: 10,
       heading: 90.11,
-      altitude: 0,
+      altitude: 890,
       altitudeAccuracy: -1
     },
     timestamp: 1695627078622.15
@@ -163,7 +163,7 @@ export default {
       latitude: 37.3302082,
       accuracy: 10,
       heading: 88.15,
-      altitude: 0,
+      altitude: 880,
       altitudeAccuracy: -1
     },
     timestamp: 1695627085621.232
@@ -176,7 +176,7 @@ export default {
       latitude: 37.3302024,
       accuracy: 10,
       heading: 81.02,
-      altitude: 0,
+      altitude: 870,
       altitudeAccuracy: -1
     },
     timestamp: 1695627092626.585
@@ -189,7 +189,7 @@ export default {
       latitude: 37.33020111,
       accuracy: 10,
       heading: 83.66,
-      altitude: 0,
+      altitude: 860,
       altitudeAccuracy: -1
     },
     timestamp: 1695627099605.0562
@@ -202,7 +202,7 @@ export default {
       latitude: 37.33019912,
       accuracy: 10,
       heading: 83.22,
-      altitude: 0,
+      altitude: 850,
       altitudeAccuracy: -1
     },
     timestamp: 1695627107609.854
@@ -215,7 +215,7 @@ export default {
       latitude: 37.33021988,
       accuracy: 10,
       heading: 91.88,
-      altitude: 0,
+      altitude: 855,
       altitudeAccuracy: -1
     },
     timestamp: 1695627110627.571
@@ -228,7 +228,7 @@ export default {
       latitude: 37.33022126,
       accuracy: 5,
       heading: 83.38,
-      altitude: 0,
+      altitude: 860,
       altitudeAccuracy: -1
     },
     timestamp: 1695627117632.63
@@ -241,7 +241,7 @@ export default {
       latitude: 37.33021503,
       accuracy: 5,
       heading: 92.28,
-      altitude: 0,
+      altitude: 865,
       altitudeAccuracy: -1
     },
     timestamp: 1695627124634.9978
@@ -254,7 +254,7 @@ export default {
       latitude: 37.33019502,
       accuracy: 5,
       heading: 89.27,
-      altitude: 0,
+      altitude: 870,
       altitudeAccuracy: -1
     },
     timestamp: 1695627131631.4448
@@ -267,7 +267,7 @@ export default {
       latitude: 37.33018566,
       accuracy: 5,
       heading: 100.15,
-      altitude: 0,
+      altitude: 875,
       altitudeAccuracy: -1
     },
     timestamp: 1695627138592.2761
@@ -280,7 +280,7 @@ export default {
       latitude: 37.33014389,
       accuracy: 10,
       heading: 102.49,
-      altitude: 0,
+      altitude: 855,
       altitudeAccuracy: -1
     },
     timestamp: 1695627145644.239
@@ -293,7 +293,7 @@ export default {
       latitude: 37.33010689,
       accuracy: 5,
       heading: 92.94,
-      altitude: 0,
+      altitude: 835,
       altitudeAccuracy: -1
     },
     timestamp: 1695627152615.135
@@ -306,7 +306,7 @@ export default {
       latitude: 37.33010478,
       accuracy: 5,
       heading: 91.92,
-      altitude: 0,
+      altitude: 815,
       altitudeAccuracy: -1
     },
     timestamp: 1695627155639.2578
@@ -319,7 +319,7 @@ export default {
       latitude: 37.33010478,
       accuracy: 5,
       heading: 91.92,
-      altitude: 0,
+      altitude: 795,
       altitudeAccuracy: -1
     },
     timestamp: 1695627159639.2578
@@ -332,7 +332,7 @@ export default {
       latitude: 37.33007095,
       accuracy: 5,
       heading: 98.58,
-      altitude: 0,
+      altitude: 775,
       altitudeAccuracy: -1
     },
     timestamp: 1695627173637.762
@@ -345,7 +345,7 @@ export default {
       latitude: 37.33004483,
       accuracy: 10,
       heading: 101.63,
-      altitude: 0,
+      altitude: 755,
       altitudeAccuracy: -1
     },
     timestamp: 1695627180650.113
