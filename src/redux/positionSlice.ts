@@ -6,6 +6,7 @@ import type { RootState } from './store'
 import { PositionType } from '../types/position'
 import { AppStartListening } from './listenerMiddleware'
 
+import calculateVertical from './calculateVertical'
 import { overwriteAltitudeInDev } from './transformPosition'
 
 interface PositionState {
@@ -110,6 +111,11 @@ export const selectLatestPosition = createSelector(
     const [lastTimestamp] = history.slice(-1)
     return positions[lastTimestamp]
   }
+)
+
+export const selectVertical = createSelector(
+  selectPositions,
+  (positions) => calculateVertical(positions)
 )
 
 export default positionSlice.reducer

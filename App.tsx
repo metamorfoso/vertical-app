@@ -10,6 +10,7 @@ import tamaguiConfig from './tamagui.config'
 import RecordPosition from './src/components/RecordPosition'
 import { store as reduxStore, persistor } from './src/redux/store'
 import Altitude from './src/components/Altitude'
+import Vertical from './src/components/Vertical'
 
 function App (): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark'
@@ -35,6 +36,7 @@ function App (): JSX.Element {
                 gap='$5'
                 backgroundColor='$color.pink4Light'
               >
+                <Vertical />
                 <Altitude />
                 <RecordPosition />
               </YStack>
