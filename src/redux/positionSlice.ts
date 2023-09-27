@@ -1,10 +1,12 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import Geolocation from '@react-native-community/geolocation'
 
 import type { RootState } from './store'
 import { PositionType } from '../types/position'
 import { AppStartListening } from './listenerMiddleware'
-import Geolocation from '@react-native-community/geolocation'
+
+import { overwriteAltitudeInDev } from './transformPosition'
 
 interface PositionState {
   isRecording: boolean
@@ -57,11 +59,13 @@ export const addPositionListeners = (startListening: AppStartListening): void =>
     actionCreator: recordingStarted,
     effect: (_, listenerApi) => {
       const geolocationWatchId = Geolocation.watchPosition(
-        position => {
+        (nextPosition) => {
+          const position = overwriteAltitudeInDev(nextPosition)
+
           console.log(position)
           listenerApi.dispatch(positionAdded(position))
         },
-        error => {
+        (error) => {
           console.warn(error.message)
         },
         {
