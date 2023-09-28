@@ -9,8 +9,6 @@ const RecordPosition: React.FC = () => {
 
   const isRecording = useAppSelector(selectIsRecording)
 
-  const positions = useAppSelector((state) => state.position.positions)
-
   const toggleRecording = (): void => {
     if (isRecording) {
       dispatch(recordingStopped())
@@ -21,15 +19,9 @@ const RecordPosition: React.FC = () => {
 
   const buttonText = isRecording ? 'Stop' : 'Start'
 
-  const consolelogPositions = (): void => {
-    console.log(positions)
-  }
-
   return (
     <YStack>
       <Button onPress={toggleRecording}>{buttonText}</Button>
-
-      <Button onPress={consolelogPositions}>Log Positions</Button>
     </YStack>
   )
 }
