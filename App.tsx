@@ -1,8 +1,8 @@
 import React from 'react'
 import 'react-native-devsettings/withAsyncStorage'
-import { Platform, SafeAreaView, StatusBar, useColorScheme } from 'react-native'
+import { Platform, SafeAreaView, StatusBar } from 'react-native'
 import { Provider } from 'react-redux'
-import { Theme, TamaguiProvider, YStack, getTokens, Stack } from 'tamagui'
+import { Theme, TamaguiProvider, getTokens, Stack } from 'tamagui'
 import { PersistGate } from 'redux-persist/integration/react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,6 +12,7 @@ import { store as reduxStore, persistor } from './src/redux/store'
 import HomeScreen from './src/screens/Home'
 import Debug from './src/screens/Debug'
 import Nav from './src/components/Nav'
+import Screen from './src/components/Screen'
 
 const NavigationStack = createNativeStackNavigator()
 
@@ -31,8 +32,6 @@ const StatusBarWrapper = ({ backgroundColor, ...props }: StatusBarWrapperProps) 
 );
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark'
-
   const styleTokens = getTokens()
 
   return (
@@ -42,10 +41,7 @@ function App(): JSX.Element {
           <PersistGate loading={null} persistor={persistor}>
               <Theme name='light'>
                 <StatusBarWrapper backgroundColor={styleTokens.color.pink8Dark.val} barStyle="light-content" />
-                <YStack
-                  style={{ height: '100%', width: '100%' }}
-                  backgroundColor='$color.pink4Light'
-                >
+                <Screen>
                   <Nav />
                   <NavigationStack.Navigator
                     screenOptions={{
@@ -61,7 +57,7 @@ function App(): JSX.Element {
                       component={Debug}
                     />
                   </NavigationStack.Navigator>
-                </YStack>
+                </Screen>
               </Theme>
           </PersistGate>
         </Provider>

@@ -1,14 +1,13 @@
 import React from 'react'
-import { YStack } from 'tamagui'
 
 import Altitude from '../../components/Altitude'
 import Vertical from '../../components/Vertical'
 import RecordPosition from '../../components/RecordPosition'
+import Screen from '../../components/Screen'
 
 const HomeScreen = () => {
   return (
-    <YStack
-      style={{ height: '100%', width: '100%' }}
+    <Screen
       alignItems='center'
       justifyContent='center'
       gap='$5'
@@ -16,7 +15,7 @@ const HomeScreen = () => {
       <Vertical />
       <Altitude />
       <RecordPosition />
-    </YStack>
+    </Screen>
   )
 }
 
